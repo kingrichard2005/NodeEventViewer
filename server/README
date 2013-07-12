@@ -1,0 +1,9 @@
+Included npm packages:
+
+json-schema, for JSON schema management.
+json-transport, for JSON object transfer.
+
+Installation commands:
+
+npm install json-schema
+npm install json-transport

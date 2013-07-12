@@ -1,0 +1,78 @@
+
+
+
+Web Browsers
+
++---------+
+| Client 1|
++---------+--+    JSON SUBSCRIBER     +-------------+            +----------------+
+  | Client 2 |<======================>| Node Server |<==========>| DOCUMENT STORE |
+  +----------+--+      API            +-------------+            +----------------+
+    | Client N  |                           ||
+	 +-----------+                           ||
+	                                         || JSON SENDER
+	                                         || API
+														  ||
+				                      +----------------+
+										    | Event Source 1 |
+											 +----------------+--+
+											    | Event Source 2 |
+												 +----------------+--+
+												    | Event Source N |
+													 +----------------+
+
+Functional Block Descriptions
+
+1. Clients
+
+Clients are transient endpoints which may subscribe to one or more event 
+classes via the JSON SUBSCRIBER API. Once subscribed to an event channel, 
+Clients are sent Event Notifications. Event Notifications are described below.
+
+2. Node Server
+
+A Node Server manages transactions between one or more event sources, one or
+more clients, and a document store.
+
+3. Document Store
+
+A document store stores Events sent from Event Sources and Event Actions sent
+from Clients.
+
+Data Object Descriptions
+
+1. Subscription Requests/Responses
+
+A JSON object which requests/responds to a request to subscribe to an event channel.
+
+Properties
+
+Application?
+EventMajor, integer, A per-application identifier which classifies the event
+to subscribe to.
+EventMinor, integer, An application-specific identifier which categorizes the
+event.
+EventLevel?
+
+2. Event Notifications
+
+Event notifications are JSON objects which describe a single event.
+
+Properties
+
+Application?
+EventMajor, integer, A per-application identifer which classifies the event.
+EventMinor, integer, An application-specific identifier which categorizes the event.
+EventLevel?
+EventID, integer, An application-specific numeric identifier for an event.
+EventMsg, string, An application-specific string describing the event.
+
+3. Event Actions
+
+EventIndex, integer, a number which uniquely identifies an event in the 
+document store.
+
+EventAction, integer, a number corresponding to an action which modifies an
+event in the document store.
+
+
